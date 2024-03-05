@@ -13,3 +13,9 @@ LoginWindow::~LoginWindow()
 {
     delete ui;
 }
+
+void LoginWindow::on_pushButtonLogin_clicked()
+{
+
+}
+
