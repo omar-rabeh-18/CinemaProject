@@ -1,6 +1,8 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
 #include <QMessageBox>
+#include "WelcomeWindow.h"
+
 
 LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,8 +19,20 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_pushButtonLogin_clicked()
 {
+    QMessageBox::about(this, "Please Wait","Logging in...");
 
-    QMessageBox::about(this, "Please wait ","Logging in...");
+    if()
+    {
+
+        hide();
+        WelcomeWindow* welcomeWindow=new WelcomeWindow(this);
+        welcomeWindow->show();
+    }
+    else
+    {
+       ui->labelError->setVisible(true);
+    }
+
 }
 
 

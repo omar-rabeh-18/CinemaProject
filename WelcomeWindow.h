@@ -1,0 +1,4 @@
+#ifndef WELCOMEWINDOW_H
+#define WELCOMEWINDOW_H
+
+#endif // WELCOMEWINDOW_H
