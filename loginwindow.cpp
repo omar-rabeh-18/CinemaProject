@@ -1,5 +1,6 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
+#include <QMessageBox>
 
 LoginWindow::LoginWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,5 +18,6 @@ LoginWindow::~LoginWindow()
 void LoginWindow::on_pushButtonLogin_clicked()
 {
 
+    QMessageBox::about(this, "Please wait ","Logging in...");
 }
 
