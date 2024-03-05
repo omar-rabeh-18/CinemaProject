@@ -21,3 +21,9 @@ void LoginWindow::on_pushButtonLogin_clicked()
     QMessageBox::about(this, "Please wait ","Logging in...");
 }
 
+
+void LoginWindow::on_pushButtonRegister_clicked()
+{
+    QMessageBox::about(this,"Please wait ","Registration in process...");
+}
+
