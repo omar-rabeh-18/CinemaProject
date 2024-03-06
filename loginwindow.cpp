@@ -1,7 +1,9 @@
 #include "loginwindow.h"
 #include "ui_loginwindow.h"
 #include <QMessageBox>
-#include "WelcomeWindow.h"
+#include "Users.h"
+#include "RegisterWindow.h"
+#include "welcomewindow.h"
 
 
 LoginWindow::LoginWindow(QWidget *parent)
@@ -19,19 +21,18 @@ LoginWindow::~LoginWindow()
 
 void LoginWindow::on_pushButtonLogin_clicked()
 {
-    QMessageBox::about(this, "Please Wait","Logging in...");
+    QString username=ui->lineEditUsername->text();
+    QString password=ui->lineEditPassword->text();
 
-    if()
-    {
+
 
         hide();
-        WelcomeWindow* welcomeWindow=new WelcomeWindow(this);
-        welcomeWindow->show();
-    }
-    else
-    {
-       ui->labelError->setVisible(true);
-    }
+     WelcomeWindow* Welcome= new WelcomeWindow(this);
+        Welcome->show();
+        else
+        {
+            ui->labelError->setVisible(true);
+        }
 
 }
 
@@ -39,5 +40,10 @@ void LoginWindow::on_pushButtonLogin_clicked()
 void LoginWindow::on_pushButtonRegister_clicked()
 {
     QMessageBox::about(this,"Please wait ","Registration in process...");
+    hide();
+    RegisterWindow* registerwindow=new RegisterWindow(this);
+    registerwindow->show();
 }
+
+
 
