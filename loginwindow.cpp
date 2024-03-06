@@ -2,8 +2,11 @@
 #include "ui_loginwindow.h"
 #include <QMessageBox>
 #include "Users.h"
-#include "RegisterWindow.h"
+#include "registerwindow.h"
 #include "welcomewindow.h"
+#include<QString>
+#include<QStringList>
+
 
 
 LoginWindow::LoginWindow(QWidget *parent)
@@ -19,20 +22,26 @@ LoginWindow::~LoginWindow()
     delete ui;
 }
 
+
+
 void LoginWindow::on_pushButtonLogin_clicked()
 {
     QString username=ui->lineEditUsername->text();
-    QString password=ui->lineEditPassword->text();
+    QString password=ui->lineEditUsername->text();
 
-
-
+    for (int i=0;i<100;i++)
+    {
+        if(username==usernames[i] && password==passwords[i])
+        {
         hide();
      WelcomeWindow* Welcome= new WelcomeWindow(this);
         Welcome->show();
-        else
-        {
-            ui->labelError->setVisible(true);
         }
+    }
+
+
+        ui->labelError->setVisible(true);
+
 
 }
 
@@ -44,6 +53,10 @@ void LoginWindow::on_pushButtonRegister_clicked()
     RegisterWindow* registerwindow=new RegisterWindow(this);
     registerwindow->show();
 }
+
+
+
+
 
 
 
