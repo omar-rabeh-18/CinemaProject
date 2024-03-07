@@ -272,8 +272,8 @@
   <widget class="QGroupBox" name="groupBoxGender">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>280</y>
+     <x>70</x>
+     <y>270</y>
      <width>201</width>
      <height>91</height>
     </rect>

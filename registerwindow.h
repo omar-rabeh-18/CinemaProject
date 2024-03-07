@@ -15,6 +15,11 @@ public:
     explicit RegisterWindow(QWidget *parent = nullptr);
     ~RegisterWindow();
 
+private slots:
+    void on_labelAlreadyExisting_linkActivated(const QString &link);
+
+    void on_pushButtonRegisterWindow_clicked();
+
 private:
     Ui::RegisterWindow *ui;
 };
