@@ -12,11 +12,15 @@ class WelcomeWindow : public QDialog
     Q_OBJECT
 
 public:
-    explicit WelcomeWindow(QWidget *parent = nullptr);
+    explicit WelcomeWindow(QString username, int age, QWidget *parent = nullptr);
     ~WelcomeWindow();
 
 private slots:
     void on_label_welcome_linkActivated(const QString &link);
+
+    void on_WelcomeWindow_accepted();
+
+    void on_pushButton_windows_sgnout_clicked();
 
 private:
     Ui::WelcomeWindow *ui;

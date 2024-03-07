@@ -1,11 +1,22 @@
 #include "welcomewindow.h"
 #include "ui_welcomewindow.h"
-
-WelcomeWindow::WelcomeWindow(QWidget *parent)
+#include <QString>
+#include <QLabel>
+#include <QPixmap>
+#include <QApplication>
+#include "loginwindow.h"
+WelcomeWindow::WelcomeWindow(QString username, int age, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::WelcomeWindow)
 {
     ui->setupUi(this);
+   QLabel* helloLabel = new QLabel(this);
+    helloLabel->setText("hello " + username + " " + QString::number(age));
+   QPixmap pix("C:\\Users\\sarah\\Desktop\\Git_ cloned_Assignment1\\cinema-label-poster_603843-2892.avif");
+    int w= ui->label_2_Image->width();
+   int h=ui->label_2_Image->height();
+    ui->label_2_Image->setPixmap(pix.scaled(w,h,Qt::KeepAspectRatio));
+
 }
 
 WelcomeWindow::~WelcomeWindow()
@@ -13,8 +24,12 @@ WelcomeWindow::~WelcomeWindow()
     delete ui;
 }
 
-void WelcomeWindow::on_label_welcome_linkActivated(const QString &link)
+
+void WelcomeWindow::on_pushButton_windows_sgnout_clicked()
 {
+    hide();
+    LoginWindow* Login= new LoginWindow(this);
+    Login->show();
 
 }
 

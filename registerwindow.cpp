@@ -6,6 +6,7 @@ RegisterWindow::RegisterWindow(QWidget *parent)
     , ui(new Ui::RegisterWindow)
 {
     ui->setupUi(this);
+    ui->labelAgeError->setVisible(false);
 }
 
 RegisterWindow::~RegisterWindow()

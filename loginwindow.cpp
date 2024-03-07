@@ -22,7 +22,7 @@ LoginWindow::~LoginWindow()
     delete ui;
 }
 
-
+ bool loginSuccessful = false;
 
 void LoginWindow::on_pushButtonLogin_clicked()
 {
@@ -33,15 +33,18 @@ void LoginWindow::on_pushButtonLogin_clicked()
     {
         if(username==usernames[i] && password==passwords[i])
         {
+            int age= ages[i];
         hide();
-     WelcomeWindow* Welcome= new WelcomeWindow(this);
+     WelcomeWindow* Welcome= new WelcomeWindow(username,age,this);
         Welcome->show();
+     loginSuccessful=true;
+     break;
+        }
+        if(!loginSuccessful)
+        {
+            ui->labelError->setVisible(true);
         }
     }
-
-
-        ui->labelError->setVisible(true);
-
 
 }
 
