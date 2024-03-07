@@ -3,6 +3,7 @@
 #include <QGroupBox>
 #include<QComboBox>
 #include<Users.h>
+#include"welcomewindow.h"
 RegisterWindow::RegisterWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::RegisterWindow)
@@ -62,10 +63,26 @@ void RegisterWindow::on_pushButtonRegisterWindow_clicked()
     {
         ui->labelFilledError->setVisible(true);
     }
-     if(x==0)
+     else if(x==0)
     {
        ui->labelFilledError->setVisible(true);
     }
+    else if (!ui->groupBoxGender->isChecked()||!ui->groupBoxAccountType->isChecked()||!ui->groupBoxBirth->isChecked()||!ui->groupBoxFavouriteGenre->isChecked())
+    {
+        ui->labelFilledError->setVisible(true);
+    }
+    else
+    {
+        int current_index=3;
+        usernames[current_index++]=user;
+        passwords[current_index++]=pass1;
+        ages[current_index++]=age;
+        usersCount++;
+        hide();
+        WelcomeWindow* Welcome= new WelcomeWindow(user,x,this);
+        Welcome->show();
+    }
+
 
 
 }
