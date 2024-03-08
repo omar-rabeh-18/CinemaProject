@@ -1,6 +1,5 @@
 #include "registerwindow.h"
 #include "ui_registerwindow.h"
-
 #include "Users.h"
 #include "welcomewindow.h"
 
@@ -33,6 +32,8 @@ void RegisterWindow::on_pushButtonRegisterWindow_clicked()
     QString retype = ui->lineEditRetypePassword->text();
     QString day = ui->lineEditDayNum->text();
     QString year = ui->lineEditYear->text();
+
+
     QString month = ui->comboBoxMonth->currentText();
 
 
@@ -47,6 +48,14 @@ void RegisterWindow::on_pushButtonRegisterWindow_clicked()
     bool female = ui->radioButtonFemale->isChecked();
     bool userAccount = ui->radioButtonUser->isChecked();
     bool adminAccount = ui->radioButtonAdmin->isChecked();
+    for(int i = 0; i < usersCount; i++)
+    {
+        if (username == usernames[i])
+        {
+            ui->labelAlreadyExisting->setVisible(true);
+            errors = true;
+        }
+    }
 
     if (password != retype)
     {
@@ -81,14 +90,7 @@ void RegisterWindow::on_pushButtonRegisterWindow_clicked()
         WelcomeWindow* welcomeWindow = new WelcomeWindow(username, age,this);
         welcomeWindow->show();
         this->close();
-        for(int i = 0; i < usersCount; i++)
-        {
-            if (username == usernames[i])
-            {
-                ui->labelAlreadyExisting->setVisible(true);
-                errors = true;
-            }
-        }
+
     }
 }
 

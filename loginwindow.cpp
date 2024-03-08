@@ -27,7 +27,7 @@ LoginWindow::~LoginWindow()
 void LoginWindow::on_pushButtonLogin_clicked()
 {
     QString username=ui->lineEditUsername->text();
-    QString password=ui->lineEditUsername->text();
+    QString password=ui->lineEditPassword->text();
     bool successfullogin=false;
 
     for (int i=0;i<usersCount;i++)
