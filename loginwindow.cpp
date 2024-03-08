@@ -52,7 +52,6 @@ void LoginWindow::on_pushButtonLogin_clicked()
 
 void LoginWindow::on_pushButtonRegister_clicked()
 {
-    QMessageBox::about(this,"Please wait ","Registration in process...");
     hide();
     RegisterWindow* registerwindow=new RegisterWindow(this);
     registerwindow->show();

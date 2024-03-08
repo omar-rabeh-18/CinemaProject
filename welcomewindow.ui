@@ -29,10 +29,10 @@
   <widget class="QLabel" name="label_2_Image">
    <property name="geometry">
     <rect>
-     <x>50</x>
-     <y>100</y>
-     <width>231</width>
-     <height>121</height>
+     <x>130</x>
+     <y>90</y>
+     <width>291</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="text">
@@ -42,7 +42,7 @@
   <widget class="QLabel" name="label_3_hello">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>220</x>
      <y>60</y>
      <width>51</width>
      <height>20</height>
@@ -55,7 +55,7 @@
   <widget class="QPushButton" name="pushButton_windows_sgnout">
    <property name="geometry">
     <rect>
-     <x>50</x>
+     <x>130</x>
      <y>240</y>
      <width>80</width>
      <height>31</height>

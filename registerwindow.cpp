@@ -48,6 +48,7 @@ void RegisterWindow::on_pushButtonRegisterWindow_clicked()
     bool female = ui->radioButtonFemale->isChecked();
     bool userAccount = ui->radioButtonUser->isChecked();
     bool adminAccount = ui->radioButtonAdmin->isChecked();
+
     for(int i = 0; i < usersCount; i++)
     {
         if (username == usernames[i])
@@ -81,7 +82,6 @@ void RegisterWindow::on_pushButtonRegisterWindow_clicked()
     }
     if (!errors)
     {
-
         usernames[usersCount] = username;
         passwords[usersCount] = password;
         ages[usersCount] = age;
