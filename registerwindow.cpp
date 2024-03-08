@@ -1,89 +1,99 @@
 #include "registerwindow.h"
 #include "ui_registerwindow.h"
-#include <QGroupBox>
-#include<QComboBox>
-#include<Users.h>
-#include"welcomewindow.h"
-RegisterWindow::RegisterWindow(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::RegisterWindow)
+
+#include "Users.h"
+#include "welcomewindow.h"
+
+
+RegisterWindow::RegisterWindow(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::RegisterWindow)
 {
     ui->setupUi(this);
+
+
     ui->labelAlreadyExisting->setVisible(false);
     ui->labelNotMatching->setVisible(false);
     ui->labelAgeError->setVisible(false);
+    ui->labelFilledError->setVisible(false);
 }
+
 
 RegisterWindow::~RegisterWindow()
 {
     delete ui;
 }
 
-
-
 void RegisterWindow::on_pushButtonRegisterWindow_clicked()
 {
-    ui->labelAlreadyExisting->setVisible(false);
-    ui->labelNotMatching->setVisible(false);
-    ui->labelAgeError->setVisible(false);
-    ui->labelFilledError->setVisible(false);
+    bool errors = false;
 
-    QString user=ui->labelUsernameRegister->text();
-   QString pass1= ui->labelPasswordRegister->text();
-    QString pass2=ui->labelRetypePassword->text();
-
-  QString mon= ui->comboBoxMonth->currentText();
-    int x  =mon.toInt();
-
-  ui-> groupBoxGender->isChecked();
-  ui->groupBoxAccountType->isChecked();
-
-  ui-> groupBoxBirth->isChecked();
-    ui->groupBoxFavouriteGenre->isChecked();
+    QString username= ui->lineEditUsernameRegister->text();
+    QString password = ui->lineEditPasswordRegister->text();
+    QString retype = ui->lineEditRetypePassword->text();
+    QString day = ui->lineEditDayNum->text();
+    QString year = ui->lineEditYear->text();
+    QString month = ui->comboBoxMonth->currentText();
 
 
-    for (int i=0;i<100;i++)
-     {
-         if (user==usernames[i])
-        {
-            ui->labelAlreadyExisting->setVisible(true);
-         }
-     }
-    if(pass1!=pass2)
-     {
-         ui->labelNotMatching->setVisible(true);
-     }
+    bool actionGenre = ui->checkBoxAction->isChecked();
+    bool comedyGenre = ui->checkBoxComedy->isChecked();
+    bool romanceGenre = ui->checkBoxRomance->isChecked();
+    bool dramaGenre = ui->checkBoxDrama->isChecked();
+    bool horrorGenre = ui->checkBoxHorror->isChecked();
+    bool otherGenre = ui->checkBoxOther->isChecked();
 
-    int age= 2024-x;
-     if(x<12)
+    bool male = ui->radioButtonMale->isChecked();
+    bool female = ui->radioButtonFemale->isChecked();
+    bool userAccount = ui->radioButtonUser->isChecked();
+    bool adminAccount = ui->radioButtonAdmin->isChecked();
+
+    if (password != retype)
+    {
+        ui->labelNotMatching->setVisible(true);
+        errors = true;
+    }
+    int x=year.toInt();
+
+    int age = 2024 - x;
+    if (age < 12)
     {
         ui->labelAgeError->setVisible(true);
+        errors = true;
     }
-     if(user.isEmpty()|| pass1.isEmpty()||pass2.isEmpty()||mon.isEmpty())
+
+    if (username == "" || password == "" || retype == ""
+        || month == "" || day == "" || year == ""
+        || (!male && !female) || (!userAccount && !adminAccount)
+        || (!actionGenre && !comedyGenre && !romanceGenre && !dramaGenre && !horrorGenre && !otherGenre))
     {
         ui->labelFilledError->setVisible(true);
+        errors = true;
     }
-     else if(x==0)
+    if (!errors)
     {
-       ui->labelFilledError->setVisible(true);
-    }
-    else if (!ui->groupBoxGender->isChecked()||!ui->groupBoxAccountType->isChecked()||!ui->groupBoxBirth->isChecked()||!ui->groupBoxFavouriteGenre->isChecked())
-    {
-        ui->labelFilledError->setVisible(true);
-    }
-    else
-    {
-        int current_index=3;
-        usernames[current_index++]=user;
-        passwords[current_index++]=pass1;
-        ages[current_index++]=age;
+
+        usernames[usersCount] = username;
+        passwords[usersCount] = password;
+        ages[usersCount] = age;
         usersCount++;
-        hide();
-        WelcomeWindow* Welcome= new WelcomeWindow(user,x,this);
-        Welcome->show();
+
+        WelcomeWindow* welcomeWindow = new WelcomeWindow(username, age,this);
+        welcomeWindow->show();
+        this->close();
+        for(int i = 0; i < usersCount; i++)
+        {
+            if (username == usernames[i])
+            {
+                ui->labelAlreadyExisting->setVisible(true);
+                errors = true;
+            }
+        }
     }
-
-
-
 }
+
+
+
+
+
 

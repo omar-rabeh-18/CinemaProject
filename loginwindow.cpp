@@ -28,21 +28,23 @@ void LoginWindow::on_pushButtonLogin_clicked()
 {
     QString username=ui->lineEditUsername->text();
     QString password=ui->lineEditUsername->text();
+    bool successfullogin=false;
 
-    for (int i=0;i<100;++i)
+    for (int i=0;i<usersCount;i++)
     {
         if(username==usernames[i] && password==passwords[i])
         {
-            int age= ages[i];
+            successfullogin=true;
         hide();
-     WelcomeWindow* Welcome= new WelcomeWindow(username,age,this);
+     WelcomeWindow* Welcome= new WelcomeWindow(username,ages[i],this);
         Welcome->show();
-     break;
+     this->close();
         }
-        else
-        {
-            ui->labelError->setVisible(true);
-        }
+
+    }
+    if(!successfullogin)
+    {
+        ui->labelError->setVisible(true);
     }
 
 }
@@ -54,6 +56,7 @@ void LoginWindow::on_pushButtonRegister_clicked()
     hide();
     RegisterWindow* registerwindow=new RegisterWindow(this);
     registerwindow->show();
+    this->close();
 }
 
 
