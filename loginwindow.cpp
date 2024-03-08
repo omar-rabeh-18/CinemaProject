@@ -22,14 +22,14 @@ LoginWindow::~LoginWindow()
     delete ui;
 }
 
- bool loginSuccessful = false;
+
 
 void LoginWindow::on_pushButtonLogin_clicked()
 {
     QString username=ui->lineEditUsername->text();
     QString password=ui->lineEditUsername->text();
 
-    for (int i=0;i<100;i++)
+    for (int i=0;i<100;++i)
     {
         if(username==usernames[i] && password==passwords[i])
         {
@@ -37,10 +37,9 @@ void LoginWindow::on_pushButtonLogin_clicked()
         hide();
      WelcomeWindow* Welcome= new WelcomeWindow(username,age,this);
         Welcome->show();
-     loginSuccessful=true;
      break;
         }
-        if(!loginSuccessful)
+        else
         {
             ui->labelError->setVisible(true);
         }
